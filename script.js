@@ -47,6 +47,16 @@ function loadFromStorage(key) {
 // ===== API (Railway backend) =====
 const API_BASE = 'https://riderverse-backend-production.up.railway.app';
 
+// add this right after the line above, or anywhere near the top:
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.getElementById('connectStravaBtn');
+  if (btn) {
+    btn.addEventListener('click', () => {
+      window.location.href = `${API_BASE}/auth/strava`;
+    });
+  }
+});
+
 // ===== Session handling (from URL fragment) =====
 let SESSION_ID = localStorage.getItem('riderverse_session') || null;
 
@@ -59,19 +69,10 @@ if (window.location.hash.startsWith('#session=')) {
 
 // ===== Profile =====
 function loadProfile() {
-    const profile = loadFromStorage('profile');
-    document.getElementById('name').value = profile.name || '';
-    document.getElementById('city').value = profile.city || '';
-    document.getElementById('bio').value = profile.bio || '';
-    document.addEventListener('DOMContentLoaded', () => {
-  const btn = document.getElementById('connectStravaBtn');
-  if (btn) {
-    btn.addEventListener('click', () => {
-      window.location.href = `${API_BASE}/auth/strava`;
-    });
-  }
-});
-
+  const profile = loadFromStorage('profile');
+  document.getElementById('name').value = profile.name || '';
+  document.getElementById('city').value = profile.city || '';
+  document.getElementById('bio').value = profile.bio || '';
 }
 
 document.getElementById('profileForm').addEventListener('submit', function (e) {
