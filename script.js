@@ -47,6 +47,16 @@ function loadFromStorage(key) {
 // ===== API (Railway backend) =====
 const API_BASE = 'https://riderverse-backend-production.up.railway.app';
 
+// ===== Session handling (from URL fragment) =====
+let SESSION_ID = localStorage.getItem('riderverse_session') || null;
+
+if (window.location.hash.startsWith('#session=')) {
+    SESSION_ID = window.location.hash.slice('#session='.length);
+    localStorage.setItem('riderverse_session', SESSION_ID);
+    // remove fragment from URL
+    history.replaceState(null, '', window.location.pathname);
+}
+
 // ===== Profile =====
 function loadProfile() {
     const profile = loadFromStorage('profile');
@@ -90,13 +100,22 @@ function formatDate(dateString) {
 
 // ===== Strava import (calls Railway) =====
 async function importStravaRides() {
+    if (!SESSION_ID) {
+        alert('Connect Strava first from the home page.');
+        return;
+    }
+
     try {
         const res = await fetch(`${API_BASE}/api/my-activities`, {
-            credentials: 'include'
+            headers: {
+                'Authorization': `Session ${SESSION_ID}`
+            }
         });
 
         if (!res.ok) {
-            alert('Error fetching Strava data. Is backend running?');
+            const err = await res.json().catch(() => ({}));
+            console.error('Backend error:', res.status, err);
+            alert('Error fetching Strava data. Please reconnect Strava.');
             return;
         }
 
@@ -268,7 +287,7 @@ function updateRideStats(position) {
     const now = Date.now();
     const coords = position.coords;
 
-    // ---------- OLD LOGIC (what UI shows) ----------
+    // OLD LOGIC (what UI shows)
     if (lastPosition) {
         const distanceOld = calculateDistance(
             lastPosition.coords.latitude, lastPosition.coords.longitude,
@@ -299,7 +318,7 @@ function updateRideStats(position) {
     const elapsedOld = Math.floor((now - rideStartTime) / 1000);
     document.getElementById('rideTime').textContent = formatTime(elapsedOld);
 
-    // ---------- NEW LOGIC (experimental) ----------
+    // NEW LOGIC (experimental)
     let instantSpeedNew = 0; // km/h
 
     if (newLastPosition) {
