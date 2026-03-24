@@ -1,0 +1,342 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body { 
+    font-family: 'Arial', sans-serif; 
+    background: linear-gradient(135deg, #0a0e27 0%, #1a0a2e 100%);
+    color: #e0e0e0; 
+    padding: 20px; 
+    min-height: 100vh;
+}
+
+.container { 
+    max-width: 600px; 
+    margin: 0 auto; 
+    text-align: center; 
+    padding-top: 40px;
+}
+
+.logo-section {
+    margin-bottom: 40px;
+}
+
+h1 { 
+    color: #ff1744;
+    margin-bottom: 8px;
+    font-size: 3em;
+    font-weight: 900;
+    text-shadow: 0 0 20px rgba(255, 23, 68, 0.5);
+    letter-spacing: 3px;
+}
+
+h2 {
+    color: #ff1744;
+    font-size: 2em;
+    margin-bottom: 25px;
+    text-shadow: 0 0 15px rgba(255, 23, 68, 0.4);
+    letter-spacing: 2px;
+}
+
+.tagline {
+    color: #00ff88;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #b0b0b0;
+    font-size: 0.95em;
+    margin-bottom: 30px;
+}
+
+.buttons { 
+    display: flex; 
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn-primary, .btn-secondary, .btn-add, .btn-race, .btn-import, .btn-back, .save-btn {
+    border: none; 
+    padding: 14px 28px; 
+    border-radius: 4px; 
+    font-size: 14px; 
+    cursor: pointer; 
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #ff1744 0%, #ff5252 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 23, 68, 0.3);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #ff5252 0%, #ff1744 100%);
+    box-shadow: 0 6px 20px rgba(255, 23, 68, 0.5);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #00ff88 0%, #00d084 100%);
+    color: #0a0e27;
+    box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #00d084 0%, #00ff88 100%);
+    box-shadow: 0 6px 20px rgba(0, 255, 136, 0.5);
+    transform: translateY(-2px);
+}
+
+.btn-race {
+    background: linear-gradient(135deg, #00ff88 0%, #00d084 100%);
+    color: #0a0e27;
+    box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+}
+
+.btn-race:hover {
+    background: linear-gradient(135deg, #00d084 0%, #00ff88 100%);
+    box-shadow: 0 8px 25px rgba(0, 255, 136, 0.6);
+    transform: translateY(-2px);
+}
+
+.btn-stop {
+    background: linear-gradient(135deg, #ff1744 0%, #ff5252 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 23, 68, 0.3);
+}
+
+.btn-stop:hover {
+    background: linear-gradient(135deg, #ff5252 0%, #ff1744 100%);
+    box-shadow: 0 8px 25px rgba(255, 23, 68, 0.6);
+    transform: translateY(-2px);
+}
+
+.btn-add {
+    background: linear-gradient(135deg, #ff1744 0%, #ff5252 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 23, 68, 0.3);
+}
+
+.btn-add:hover {
+    background: linear-gradient(135deg, #ff5252 0%, #ff1744 100%);
+    box-shadow: 0 6px 20px rgba(255, 23, 68, 0.5);
+    transform: translateY(-2px);
+}
+
+.btn-import {
+    background: linear-gradient(135deg, #00d4ff 0%, #00a8cc 100%);
+    color: #0a0e27;
+    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+}
+
+.btn-import:hover {
+    background: linear-gradient(135deg, #00a8cc 0%, #00d4ff 100%);
+    box-shadow: 0 6px 20px rgba(0, 212, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.btn-back {
+    background: rgba(255, 255, 255, 0.1);
+    color: #b0b0b0;
+    border: 2px solid #333;
+    margin-top: 20px;
+}
+
+.btn-back:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #555;
+}
+
+.btn-lg {
+    padding: 18px 40px;
+    font-size: 16px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.page { 
+    display: none; 
+    max-width: 600px; 
+    margin: 20px auto; 
+    text-align: center;
+    animation: fadeIn 0.3s ease-in;
+}
+
+.page.show { 
+    display: block; 
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.hidden { 
+    display: none; 
+}
+
+input, select, textarea { 
+    width: 100%; 
+    max-width: 400px; 
+    padding: 12px; 
+    margin: 10px 0; 
+    border-radius: 4px; 
+    border: 2px solid #333; 
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #ff1744;
+    background: rgba(255, 23, 68, 0.1);
+    box-shadow: 0 0 10px rgba(255, 23, 68, 0.2);
+}
+
+input::placeholder, textarea::placeholder {
+    color: #666;
+}
+
+.vehicle-select {
+    cursor: pointer;
+}
+
+.vehicle { 
+    background: linear-gradient(135deg, rgba(15, 20, 40, 0.8) 0%, rgba(25, 20, 50, 0.8) 100%);
+    margin: 15px 0; 
+    padding: 18px 20px; 
+    border-radius: 4px; 
+    text-align: left;
+    border-left: 4px solid #ff1744;
+    transition: all 0.3s ease;
+}
+
+.vehicle:hover {
+    border-left-color: #00ff88;
+    background: linear-gradient(135deg, rgba(20, 25, 50, 0.9) 0%, rgba(30, 25, 60, 0.9) 100%);
+}
+
+.vehicle h3, .vehicle h4 {
+    color: #00ff88;
+    margin-bottom: 8px;
+}
+
+.vehicle p {
+    margin: 6px 0;
+    color: #b0b0b0;
+    font-size: 0.9em;
+}
+
+.garage-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.garage-buttons button {
+    flex: 1;
+    min-width: 140px;
+}
+
+@media (max-width: 600px) { 
+    body { padding: 10px; }
+    h1 { font-size: 2.2em; }
+    .buttons { gap: 8px; }
+    .btn-primary, .btn-secondary {
+        padding: 12px 20px;
+        font-size: 13px;
+    }
+}
+
+#rideStatus {
+    margin-bottom: 30px;
+}
+
+.stats-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
+    gap: 15px; 
+    margin: 30px 0; 
+}
+
+.stat { 
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, rgba(0, 212, 255, 0.1) 100%);
+    border: 2px solid #00ff88;
+    color: #e0e0e0;
+    padding: 20px; 
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+}
+
+.stat h3 { 
+    font-size: 2.5em; 
+    margin: 0;
+    color: #00ff88;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+}
+
+.stat p { 
+    margin: 8px 0 0; 
+    font-weight: bold;
+    font-size: 0.85em;
+    color: #b0b0b0;
+}
+
+small { 
+    font-size: 0.75em;
+    opacity: 0.7;
+}
+
+.save-btn { 
+    background: linear-gradient(135deg, #ff1744 0%, #ff5252 100%);
+    color: white;
+    font-size: 16px; 
+    padding: 15px 40px;
+    box-shadow: 0 4px 15px rgba(255, 23, 68, 0.3);
+}
+
+.save-btn:hover {
+    background: linear-gradient(135deg, #ff5252 0%, #ff1744 100%);
+    box-shadow: 0 6px 20px rgba(255, 23, 68, 0.5);
+    transform: translateY(-2px);
+}
+
+#rideStats.hidden, #stopRideBtn.hidden { 
+    display: none; 
+}
+
+.section-title {
+    margin: 30px 0 15px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+    color: #00ff88;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.section-title span {
+    opacity: 0.6;
+    font-size: 13px;
+    color: #b0b0b0;
+}
+
+@media (max-width: 600px) { 
+    .stats-grid { grid-template-columns: 1fr; } 
+    .garage-buttons {
+        flex-direction: column;
+    }
+    .garage-buttons button {
+        width: 100%;
+    }
+}

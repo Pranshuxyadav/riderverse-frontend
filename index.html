@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StreetRacer - Street Race Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Home -->
+    <div class="container">
+        <div class="logo-section">
+            <h1>🏁 STREETRACER</h1>
+            <p class="tagline">Track. Race. Dominate.</p>
+        </div>
+        <p class="subtitle">Join the street racing community and log your best runs</p>
+        <div class="buttons">
+            <button onclick="showProfile()" class="btn-primary">RACER PROFILE</button>
+            <button onclick="showGarage()" class="btn-secondary">MY FLEET</button>
+        </div>
+    </div>
+
+    <!-- Profile Page -->
+    <div id="profilePage" class="page hidden">
+        <h2>🎯 RACER PROFILE</h2>
+        <form id="profileForm">
+            <input type="text" id="name" placeholder="Street Name (Your Handle)">
+            <input type="text" id="city" placeholder="Home City/Territory">
+            <textarea id="bio" placeholder="Tell us about your racing legacy..."></textarea>
+            <button type="submit" class="btn-primary">SAVE PROFILE</button>
+            <button type="button" onclick="showHome()" class="btn-back">← BACK</button>
+        </form>
+        <div id="profileDisplay" class="hidden"></div>
+    </div>
+
+    <!-- Garage Page -->
+    <div id="garagePage" class="page hidden">
+        <h2>🔧 MY FLEET</h2>
+        <div class="garage-buttons">
+            <button onclick="showAddVehicleForm()" class="btn-add">+ ADD VEHICLE</button>
+            <button onclick="showRidePage()" class="btn-race">⚡ LAUNCH RACE</button>
+            <button onclick="importStravaRides()" class="btn-import">📊 IMPORT RIDES</button>
+        </div>
+        <div id="garageContent"></div>
+        <button onclick="showHome()" class="btn-back">← BACK</button>
+    </div>
+
+    <!-- Add Vehicle Form -->
+    <div id="addVehicleForm" class="page hidden">
+        <h2>⚙️ ADD TO FLEET</h2>
+        <form id="vehicleForm">
+            <select id="type" class="vehicle-select">
+                <option value="bike">🏍️ MOTORCYCLE</option>
+                <option value="car">🚗 CAR</option>
+            </select>
+            <input type="text" id="brand" placeholder="Brand (Honda, Yamaha, Tesla)">
+            <input type="text" id="model" placeholder="Model (CBR150R, R1, Model S)">
+            <input type="text" id="nickname" placeholder="Street Name (My Beast, Turbo King)">
+            <button type="submit" class="btn-primary">ADD TO FLEET</button>
+            <button type="button" onclick="showGarage()" class="btn-back">← BACK</button>
+        </form>
+    </div>
+
+    <!-- Ride Tracking Page -->
+    <div id="ridePage" class="page hidden">
+        <h2>🏁 RACE SESSION</h2>
+        <div id="rideStatus">
+            <button id="startRideBtn" onclick="startRide()" class="btn-race btn-lg">⚡ START RUN</button>
+            <button id="stopRideBtn" onclick="stopRide()" class="btn-stop btn-lg hidden">🛑 END RUN</button>
+        </div>
+
+        <div id="rideStats" class="hidden">
+            <div class="stats-grid">
+                <div class="stat">
+                    <h3 id="liveSpeed">0</h3>
+                    <p>Current Speed<br><small>(km/h)</small></p>
+                </div>
+                <div class="stat">
+                    <h3 id="totalDistance">0</h3>
+                    <p>Distance Covered<br><small>(km)</small></p>
+                </div>
+                <div class="stat">
+                    <h3 id="rideTime">00:00:00</h3>
+                    <p>Run Duration</p>
+                </div>
+            </div>
+            <button onclick="saveRide()" class="save-btn">💾 SAVE RUN</button>
+        </div>
+
+        <button onclick="showGarage()" class="btn-back">← BACK</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
