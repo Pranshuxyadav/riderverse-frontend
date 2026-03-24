@@ -63,6 +63,15 @@ function loadProfile() {
     document.getElementById('name').value = profile.name || '';
     document.getElementById('city').value = profile.city || '';
     document.getElementById('bio').value = profile.bio || '';
+    document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.getElementById('connectStravaBtn');
+  if (btn) {
+    btn.addEventListener('click', () => {
+      window.location.href = `${API_BASE}/auth/strava`;
+    });
+  }
+});
+
 }
 
 document.getElementById('profileForm').addEventListener('submit', function (e) {
