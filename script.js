@@ -1,5 +1,3 @@
-
-
 // ===== Navigation =====
 function showHome() {
     document.querySelector('.container').style.display = 'block';
@@ -46,20 +44,10 @@ function loadFromStorage(key) {
     return JSON.parse(localStorage.getItem(key)) || {};
 }
 
-// ===== API Railway =====
-
-
+// ===== API (Railway backend) =====
 const API_BASE = 'https://riderverse-backend-production.up.railway.app';
 
-async function importStravaRides() {
-    const res = await fetch(`${API_BASE}/api/my-activities`, {
-        credentials: 'include'
-    });
-    // ...
-}
-
-
-
+// ===== Profile =====
 function loadProfile() {
     const profile = loadFromStorage('profile');
     document.getElementById('name').value = profile.name || '';
@@ -100,16 +88,18 @@ function formatDate(dateString) {
     return d.toLocaleString();
 }
 
-// ===== Strava import =====
+// ===== Strava import (calls Railway) =====
 async function importStravaRides() {
     try {
-       const res = await fetch(`${API_BASE}/api/my-activities`, {
-  credentials: 'include'
-});
+        const res = await fetch(`${API_BASE}/api/my-activities`, {
+            credentials: 'include'
+        });
+
         if (!res.ok) {
             alert('Error fetching Strava data. Is backend running?');
             return;
         }
+
         const activities = await res.json();
 
         const garage = loadFromStorage('garage');
